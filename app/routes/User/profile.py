@@ -8,7 +8,7 @@ users_collection = db['users']
 blueprint = Blueprint('profile', __name__)
 
 
-@blueprint.route('/api/users', methods=['GET'])
+@blueprint.route('/api/auth', methods=['GET'])
 @jwt_required()
 def get_user_profile():
     try:

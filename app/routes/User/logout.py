@@ -4,7 +4,6 @@ from flask_jwt_extended import jwt_required, get_jwt
 from flask import Blueprint, jsonify
 
 db = client['captcha']
-users_collection = db['users']
 token_blocked = db['token_block']
 
 blueprint = Blueprint('logout', __name__)
@@ -14,7 +13,6 @@ blueprint = Blueprint('logout', __name__)
 @jwt_required()
 def modify_token():
     jti = get_jwt()["jti"]
-    print(f"Oxente o JTI é {jti}")
 
     token_blocked.insert_one(
         {'jti': jti, 'created_at': datetime.utcnow().isoformat(' ')})
@@ -22,6 +20,6 @@ def modify_token():
     return jsonify({
         "success": {
             "message": "You have been successfully logout.",
-            
+            "code": 200
         }
-    })
+    }), 200

@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 from app.database import client
 from flask_jwt_extended import JWTManager
 from app.configuration import DevelopmentConfiguration
@@ -10,13 +11,14 @@ from app.routes.User.logout import blueprint as logout_route
 
 """
 ==========================================================================
- ➠ Backend of Activity (https://github.com/RodrigoSiliunas/)
+ ➠ Backend of Activity 3 (https://github.com/RodrigoSiliunas/)
  ➠ Section By: Rodrigo Siliunas (Rô: https://github.com/RodrigoSiliunas)
  ➠ Related system: Core file of Aplication
 ==========================================================================
 """
 
 app = Flask(__name__)
+CORS(app, resources={r'/api/*': {'origins': '*'}})
 jwt = JWTManager(app)
 
 """
